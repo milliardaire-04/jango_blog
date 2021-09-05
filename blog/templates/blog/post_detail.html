@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="d-flex border border-2 my-2 rounded">
+    <div class="mt-1 p-2">
+        <img class="rounded-circle " style="height: 70px; width: 70px;" src="{{object.author.profile.image.url}}" alt="">
+    </div>
+    <div class="card flex-fill border-start-0">
+        <h5 class="card-header"><span style="color: #6699ff"><a href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a></span> | <span
+                style="font-size: small; color: grey">{{ object.date_posted|date:"F d, Y"}}</span>
+                {% if object.author == user %}
+        <div>
+                <a class="btn my-1 btn-sm btn-secondary" href="{% url 'post-update' object.id %}">Update</a>
+                <a class="btn my-1 btn-sm btn-danger" href="{% url 'post-delete' object.id  %}">Delete</a>
+        </div>
+        {% endif %}
+        </h5>
+        
+        <div class="card-body">
+            <h5 class="card-title">{{ object.title }}</h5>
+            <p class="card-text">{{ object.content }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

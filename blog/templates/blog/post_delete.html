@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="border border-2 p-3">
+        <h1>Are you sure you want to delete the post "{{object.title}}"</h1>
+    <form method="POST">
+        {% csrf_token %}
+    <button class=" mt-2 btn btn-outline-danger" type="submit">Yes, Delete</button>
+    <a class=" mt-2 btn btn-outline-secondary" href="{% url 'post-detail' object.id %}">Cancel</a>
+    </form>
+    </div>
+{% endblock content %}
